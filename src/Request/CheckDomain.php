@@ -3,20 +3,23 @@
 namespace Vooyd\DomainApiClient\Request;
 
 use Vooyd\DomainApiClient\Interfaces\ApiRequestInterface;
+use Vooyd\DomainApiClient\Interfaces\ApiResponseInterface;
 use Vooyd\DomainApiClient\Responses\CheckDomainResponse;
 
 class CheckDomain extends AbstractRequest
 {
-    private string $sid;
-    private string $tld;
-    private string $endpoint = '';
+    protected string $sld;
+    protected string $tld;
+    protected string $endpoint = 'check';
 
     public function __construct(string $domain)
     {
         parent::__construct();
 
-        $this->sid = $domain;
-        $this->tld = $domain;
+        $sidPosition = strpos($domain, '.');
+
+        $this->sld = substr($domain, 0, $sidPosition);
+        $this->tld = substr($domain, $sidPosition + 1);
     }
 
     public function getEndPoint(): string
@@ -24,8 +27,8 @@ class CheckDomain extends AbstractRequest
         return $this->endpoint;
     }
 
-    public function getResponseObject(string $contents): ApiRequestInterface
+    public function getResponseObject(string $contents): ApiResponseInterface
     {
-        return new CheckDomainResponse();
+        return new CheckDomainResponse($contents);
     }
 }

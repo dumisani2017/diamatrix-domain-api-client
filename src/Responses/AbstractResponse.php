@@ -6,8 +6,9 @@ use Vooyd\DomainApiClient\Interfaces\ApiResponseInterface;
 
 class AbstractResponse implements ApiResponseInterface
 {
-    protected int $responseCode;
-    protected string $responseMessage;
+    public int $responseCode;
+
+    public string $responseMessage;
 
     public function getResponseCode(): int
     {

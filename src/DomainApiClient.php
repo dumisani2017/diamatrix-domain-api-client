@@ -21,7 +21,7 @@ class DomainApiClient
     public function sendRequest(ApiRequestInterface $apiRequest): ApiResponseInterface
     {
        $response = $this->httpClient->post($apiRequest->getEndPoint(), [
-            'body' => $apiRequest->getRequestParameters()
+            'form_params' => $apiRequest->getRequestParameters()
         ]);
 
        return $apiRequest->getResponseObject($response->getBody()->getContents());
