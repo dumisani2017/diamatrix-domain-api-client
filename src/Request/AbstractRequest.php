@@ -24,11 +24,16 @@ abstract class AbstractRequest implements ApiRequestInterface
         $params = [];
 
         foreach ($reflector->getProperties() as $property) {
-            if (!in_array($property->name, $this->paramsBlackList)) {
+            if (!in_array($property->name, $this->paramsBlackList) && isset( $this->{$property->name})) {
                 $params[$property->name] =  $this->{$property->name};
             }
         }
 
         return $params;
+    }
+
+    public function getEndPoint(): string
+    {
+        return $this->endpoint;
     }
 }
