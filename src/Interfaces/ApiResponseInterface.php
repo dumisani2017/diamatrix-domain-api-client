@@ -10,4 +10,5 @@ interface ApiResponseInterface
 {
     public function getResponseCode(): int;
     public function getResponseMessage(): string;
+    public function toArray(): array;
 }
