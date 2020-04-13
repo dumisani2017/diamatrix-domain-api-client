@@ -18,6 +18,15 @@ abstract class AbstractRequest implements ApiRequestInterface
         $this->key = config('domain.apiKey');
     }
 
+    protected function fill(array $inputs)
+    {
+        foreach ($inputs as $key => $value) {
+            if (property_exists(get_class($this), $key)) {
+                $this->{$key} = $value;
+            }
+        }
+    }
+
     public function getRequestParameters(): array
     {
         $reflector = new \ReflectionObject($this);
