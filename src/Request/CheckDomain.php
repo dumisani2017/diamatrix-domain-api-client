@@ -22,11 +22,6 @@ class CheckDomain extends AbstractRequest
         $this->tld = substr($domain, $sidPosition + 1);
     }
 
-    public function getEndPoint(): string
-    {
-        return $this->endpoint;
-    }
-
     public function getResponseObject(string $contents): ApiResponseInterface
     {
         return new CheckDomainResponse($contents);
