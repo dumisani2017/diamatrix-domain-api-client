@@ -2,6 +2,8 @@
 
 namespace Vooyd\DomainApiClient\Responses;
 
+use Vooyd\DomainApiClient\Structures\Reseller;
+
 class RegisterDomainResponse extends AbstractResponse
 {
     public string $domain;
@@ -19,5 +21,12 @@ class RegisterDomainResponse extends AbstractResponse
         $this->domain = $contentObj->strDomainName;
         $this->created_at = $contentObj->intCrDate;
         $this->expires_at = $contentObj->intExDate;
+
+        $this->reseller = new Reseller(
+            $contentObj->objReseller->username,
+            $contentObj->objReseller->balance,
+            $contentObj->objReseller->accountType,
+            $contentObj->objReseller->lowBalance
+        );
     }
 }
