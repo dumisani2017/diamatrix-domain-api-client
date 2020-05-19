@@ -17,6 +17,14 @@ $ composer require vooyd/diamatrix-domain-api-client
 
 ## Usage
 
+## Check Domain
+
+## List Reseller Domains
+
+## Register Domain
+
+## Renew Domain
+
 ## Change log
 
 Please see the [changelog](changelog.md) for more information on what has changed recently.
